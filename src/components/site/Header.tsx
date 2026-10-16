@@ -52,7 +52,7 @@ export function Header() {
           >
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-          <Link to={user ? (isStaff ? "/admin" : "/portal") : "/auth"} className="hidden sm:block">
+          <Link to="/auth" className="hidden sm:block">
             <Button variant="outline" size="sm">
               {user ? (isStaff ? "Admin" : "Client portal") : "Sign in"}
             </Button>
@@ -92,7 +92,7 @@ export function Header() {
               <Link to="/quote" onClick={() => setOpen(false)} className="flex-1">
                 <Button className="w-full">Start a project</Button>
               </Link>
-              <Link to={user ? (isStaff ? "/admin" : "/portal") : "/auth"} onClick={() => setOpen(false)} className="flex-1">
+              <Link to="/auth" onClick={() => setOpen(false)} className="flex-1">
                 <Button variant="outline" className="w-full">
                   {user ? "My account" : "Sign in"}
                 </Button>
