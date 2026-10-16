@@ -22,7 +22,8 @@ export function LeadForm({
 }: {
   fields: Field[];
   submitLabel: string;
-  onSubmit: (values: Record<string, string>) => Promise<{ error: { message: string } | null }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSubmit: (values: any) => PromiseLike<{ error: { message: string } | null }>;
   success: ReactNode;
 }) {
   const [busy, setBusy] = useState(false);

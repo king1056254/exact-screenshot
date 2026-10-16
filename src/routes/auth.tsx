@@ -40,7 +40,7 @@ function AuthPage() {
             options: { emailRedirectTo: window.location.origin, data: { full_name: String(fd.get("name") ?? "") } },
           });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (mode === "up") toast.success("Check your email to confirm your account.");
   }
 
