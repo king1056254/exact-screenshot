@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_access_state: {
+        Row: {
+          blocked: boolean
+          id: boolean
+          reason: string | null
+          updated_at: string
+        }
+        Insert: {
+          blocked?: boolean
+          id?: boolean
+          reason?: string | null
+          updated_at?: string
+        }
+        Update: {
+          blocked?: boolean
+          id?: boolean
+          reason?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author_name: string | null
@@ -117,6 +138,7 @@ export type Database = {
           email: string | null
           id: string
           industry: string | null
+          is_demo: boolean
           notes: string | null
           phone: string | null
           status: string
@@ -130,6 +152,7 @@ export type Database = {
           email?: string | null
           id?: string
           industry?: string | null
+          is_demo?: boolean
           notes?: string | null
           phone?: string | null
           status?: string
@@ -143,6 +166,7 @@ export type Database = {
           email?: string | null
           id?: string
           industry?: string | null
+          is_demo?: boolean
           notes?: string | null
           phone?: string | null
           status?: string
@@ -202,6 +226,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          is_demo: boolean
           message: string
           name: string
           phone: string | null
@@ -213,6 +238,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          is_demo?: boolean
           message: string
           name: string
           phone?: string | null
@@ -224,6 +250,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          is_demo?: boolean
           message?: string
           name?: string
           phone?: string | null
@@ -412,6 +439,7 @@ export type Database = {
           cv_url: string | null
           email: string
           id: string
+          is_demo: boolean
           job_id: string | null
           name: string
           phone: string | null
@@ -424,6 +452,7 @@ export type Database = {
           cv_url?: string | null
           email: string
           id?: string
+          is_demo?: boolean
           job_id?: string | null
           name: string
           phone?: string | null
@@ -436,6 +465,7 @@ export type Database = {
           cv_url?: string | null
           email?: string
           id?: string
+          is_demo?: boolean
           job_id?: string | null
           name?: string
           phone?: string | null
@@ -754,6 +784,7 @@ export type Database = {
           details: string | null
           email: string
           id: string
+          is_demo: boolean
           name: string
           phone: string | null
           project_type: string | null
@@ -768,6 +799,7 @@ export type Database = {
           details?: string | null
           email: string
           id?: string
+          is_demo?: boolean
           name: string
           phone?: string | null
           project_type?: string | null
@@ -782,6 +814,7 @@ export type Database = {
           details?: string | null
           email?: string
           id?: string
+          is_demo?: boolean
           name?: string
           phone?: string | null
           project_type?: string | null
@@ -877,6 +910,36 @@ export type Database = {
           summary?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      submission_drafts: {
+        Row: {
+          created_at: string
+          id: string
+          reply: string
+          staff_id: string
+          submission_id: string | null
+          submission_type: string
+          summary: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reply: string
+          staff_id: string
+          submission_id?: string | null
+          submission_type: string
+          summary: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reply?: string
+          staff_id?: string
+          submission_id?: string | null
+          submission_type?: string
+          summary?: string
         }
         Relationships: []
       }

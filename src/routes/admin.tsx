@@ -1,0 +1,4 @@
+import { createFileRoute,Outlet } from '@tanstack/react-router';
+import { WorkspaceShell } from '@/components/workspace/WorkspaceShell';
+export const Route=createFileRoute('/admin')({head:()=>({meta:[{title:'Daylight Studio — Administration'},{name:'description',content:'Daylight staff workspace for content, submissions and client delivery.'},{property:'og:title',content:'Daylight Studio'},{property:'og:description',content:'Daylight company administration.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'},{name:'robots',content:'noindex,nofollow'}]}),component:AdminLayout});
+function AdminLayout(){return <WorkspaceShell staff><Outlet/></WorkspaceShell>;}
