@@ -1,0 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { ResourceManager,AiAssistant } from '@/components/workspace/ResourceManager';
+import { Accounts } from '@/components/workspace/Accounts';
+import { resources } from '@/lib/workspace';
+export const Route=createFileRoute('/admin/$section')({head:({params})=>({meta:[{title:`${resources[params.section]?.title??(params.section==='ai'?'AI assistant':'Accounts')} — Daylight Studio`},{name:'description',content:'Manage Daylight content and client operations.'},{property:'og:title',content:`Daylight Studio — ${params.section}`},{property:'og:description',content:'Daylight staff management workspace.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:AdminSection});
+function AdminSection(){const {section}=Route.useParams();if(section==='accounts')return <Accounts/>;if(section==='ai')return <><h1 className="mb-7 text-3xl font-semibold">Submission assistant</h1><AiAssistant/></>;const resource=resources[section];return resource?<ResourceManager key={section} resource={resource}/>:<h1>Section not found</h1>;}

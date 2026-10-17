@@ -1,0 +1,4 @@
+import { createFileRoute,Outlet } from '@tanstack/react-router';
+import { WorkspaceShell } from '@/components/workspace/WorkspaceShell';
+export const Route=createFileRoute('/portal')({head:()=>({meta:[{title:'Client workspace — Daylight'},{name:'description',content:'Your Daylight projects, documents, support and invoices.'},{property:'og:title',content:'Client workspace — Daylight'},{property:'og:description',content:'Your private Daylight account.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'},{name:'robots',content:'noindex,nofollow'}]}),component:PortalLayout});
+function PortalLayout(){return <WorkspaceShell><Outlet/></WorkspaceShell>;}
