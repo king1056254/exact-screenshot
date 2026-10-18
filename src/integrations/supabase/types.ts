@@ -90,6 +90,7 @@ export type Database = {
           description: string | null
           expected_completion: string | null
           id: string
+          is_demo: boolean
           name: string
           progress: number
           start_date: string | null
@@ -102,6 +103,7 @@ export type Database = {
           description?: string | null
           expected_completion?: string | null
           id?: string
+          is_demo?: boolean
           name: string
           progress?: number
           start_date?: string | null
@@ -114,6 +116,7 @@ export type Database = {
           description?: string | null
           expected_completion?: string | null
           id?: string
+          is_demo?: boolean
           name?: string
           progress?: number
           start_date?: string | null
@@ -337,6 +340,7 @@ export type Database = {
           description: string
           id: string
           invoice_id: string
+          is_demo: boolean
           quantity: number
           unit_price: number
         }
@@ -345,6 +349,7 @@ export type Database = {
           description: string
           id?: string
           invoice_id: string
+          is_demo?: boolean
           quantity?: number
           unit_price?: number
         }
@@ -353,6 +358,7 @@ export type Database = {
           description?: string
           id?: string
           invoice_id?: string
+          is_demo?: boolean
           quantity?: number
           unit_price?: number
         }
@@ -374,6 +380,7 @@ export type Database = {
           due_date: string | null
           id: string
           invoice_number: string
+          is_demo: boolean
           issue_date: string | null
           notes: string | null
           project_id: string | null
@@ -390,6 +397,7 @@ export type Database = {
           due_date?: string | null
           id?: string
           invoice_number: string
+          is_demo?: boolean
           issue_date?: string | null
           notes?: string | null
           project_id?: string | null
@@ -406,6 +414,7 @@ export type Database = {
           due_date?: string | null
           id?: string
           invoice_number?: string
+          is_demo?: boolean
           issue_date?: string | null
           notes?: string | null
           project_id?: string | null
@@ -529,6 +538,7 @@ export type Database = {
           amount: number
           id: string
           invoice_id: string
+          is_demo: boolean
           method: string | null
           paid_at: string
           reference: string | null
@@ -537,6 +547,7 @@ export type Database = {
           amount: number
           id?: string
           invoice_id: string
+          is_demo?: boolean
           method?: string | null
           paid_at?: string
           reference?: string | null
@@ -545,6 +556,7 @@ export type Database = {
           amount?: number
           id?: string
           invoice_id?: string
+          is_demo?: boolean
           method?: string | null
           paid_at?: string
           reference?: string | null
@@ -661,6 +673,7 @@ export type Database = {
           file_path: string | null
           file_type: string | null
           id: string
+          is_demo: boolean
           project_id: string
           title: string
           uploaded_by: string | null
@@ -671,6 +684,7 @@ export type Database = {
           file_path?: string | null
           file_type?: string | null
           id?: string
+          is_demo?: boolean
           project_id: string
           title: string
           uploaded_by?: string | null
@@ -681,6 +695,7 @@ export type Database = {
           file_path?: string | null
           file_type?: string | null
           id?: string
+          is_demo?: boolean
           project_id?: string
           title?: string
           uploaded_by?: string | null
@@ -701,6 +716,7 @@ export type Database = {
           body: string
           created_at: string
           id: string
+          is_demo: boolean
           project_id: string
           sender_id: string | null
           sender_name: string | null
@@ -709,6 +725,7 @@ export type Database = {
           body: string
           created_at?: string
           id?: string
+          is_demo?: boolean
           project_id: string
           sender_id?: string | null
           sender_name?: string | null
@@ -717,6 +734,7 @@ export type Database = {
           body?: string
           created_at?: string
           id?: string
+          is_demo?: boolean
           project_id?: string
           sender_id?: string | null
           sender_name?: string | null
@@ -737,6 +755,7 @@ export type Database = {
           description: string | null
           due_date: string | null
           id: string
+          is_demo: boolean
           project_id: string
           sort_order: number
           status: string
@@ -748,6 +767,7 @@ export type Database = {
           description?: string | null
           due_date?: string | null
           id?: string
+          is_demo?: boolean
           project_id: string
           sort_order?: number
           status?: string
@@ -759,6 +779,7 @@ export type Database = {
           description?: string | null
           due_date?: string | null
           id?: string
+          is_demo?: boolean
           project_id?: string
           sort_order?: number
           status?: string
@@ -949,6 +970,7 @@ export type Database = {
           created_at: string
           description: string | null
           id: string
+          is_demo: boolean
           priority: string
           project_id: string | null
           status: string
@@ -960,6 +982,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          is_demo?: boolean
           priority?: string
           project_id?: string | null
           status?: string
@@ -971,6 +994,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          is_demo?: boolean
           priority?: string
           project_id?: string | null
           status?: string
