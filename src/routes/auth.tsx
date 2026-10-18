@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { SiteLayout, Section } from "@/components/site/Page";
 import { Button } from "@/components/ui/button";
@@ -53,9 +53,7 @@ function AuthPage() {
             <p className="mt-2 text-sm text-muted-foreground">
               {user.email} · {isStaff ? "Staff account" : "Client account"}
             </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Your {isStaff ? "admin area" : "client portal"} is being built and will appear here shortly.
-            </p>
+            <Button asChild className="mt-6"><Link to={isStaff ? '/admin' : '/portal'}>Open {isStaff ? 'studio' : 'client workspace'}</Link></Button>
             <Button variant="outline" className="mt-6" onClick={() => supabase.auth.signOut()}>
               Sign out
             </Button>
@@ -80,13 +78,13 @@ function AuthPage() {
             <Button type="submit" className="w-full" disabled={busy}>
               {busy ? "Please wait…" : mode === "in" ? "Sign in" : "Create account"}
             </Button>
-            <button
+            <Button variant="ghost"
               type="button"
               onClick={() => setMode(mode === "in" ? "up" : "in")}
               className="w-full text-center text-sm text-muted-foreground hover:text-foreground"
             >
               {mode === "in" ? "New client? Create an account" : "Already have an account? Sign in"}
-            </button>
+            </Button>
           </form>
         )}
       </Section>

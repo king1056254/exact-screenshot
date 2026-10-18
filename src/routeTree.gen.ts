@@ -28,6 +28,7 @@ import { Route as AdminSectionRouteImport } from './routes/admin.$section'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as PortalIndexRouteImport } from './routes/portal.index'
+import { Route as PortalSectionRouteImport } from './routes/portal.$section'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
@@ -128,6 +129,11 @@ const PortalIndexRoute = PortalIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PortalRoute,
 } as any)
+const PortalSectionRoute = PortalSectionRouteImport.update({
+  id: '/$section',
+  path: '/$section',
+  getParentRoute: () => PortalRoute,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/$section': typeof AdminSectionRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/portal/$section': typeof PortalSectionRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -189,6 +196,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/$section': typeof AdminSectionRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/portal/$section': typeof PortalSectionRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/$section': typeof AdminSectionRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/portal/$section': typeof PortalSectionRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -242,6 +251,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/$section'
     | '/blog/$slug'
+    | '/portal/$section'
     | '/services/$slug'
     | '/work/$slug'
     | '/admin/'
@@ -265,6 +275,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/$section'
     | '/blog/$slug'
+    | '/portal/$section'
     | '/services/$slug'
     | '/work/$slug'
     | '/admin'
@@ -290,6 +301,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/$section'
     | '/blog/$slug'
+    | '/portal/$section'
     | '/services/$slug'
     | '/work/$slug'
     | '/admin/'
@@ -457,6 +469,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalIndexRouteImport
       parentRoute: typeof PortalRoute
     }
+    '/portal/$section': {
+      id: '/portal/$section'
+      path: '/$section'
+      fullPath: '/portal/$section'
+      preLoaderRoute: typeof PortalSectionRouteImport
+      parentRoute: typeof PortalRoute
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -501,10 +520,12 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PortalRouteChildren {
+  PortalSectionRoute: typeof PortalSectionRoute
   PortalIndexRoute: typeof PortalIndexRoute
 }
 
 const PortalRouteChildren: PortalRouteChildren = {
+  PortalSectionRoute: PortalSectionRoute,
   PortalIndexRoute: PortalIndexRoute,
 }
 

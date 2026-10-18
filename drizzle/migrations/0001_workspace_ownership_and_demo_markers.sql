@@ -1,0 +1,18 @@
+alter table public.support_tickets drop constraint if exists ticket_project_owned;
+alter table public.client_projects add column if not exists is_demo boolean not null default false;
+alter table public.project_milestones add column if not exists is_demo boolean not null default false;
+alter table public.project_documents add column if not exists is_demo boolean not null default false;
+alter table public.project_messages add column if not exists is_demo boolean not null default false;
+alter table public.support_tickets add column if not exists is_demo boolean not null default false;
+alter table public.invoices add column if not exists is_demo boolean not null default false;
+alter table public.invoice_items add column if not exists is_demo boolean not null default false;
+alter table public.payments add column if not exists is_demo boolean not null default false;
+create or replace function public.validate_project_client() returns trigger language plpgsql set search_path=public as $$ begin if new.project_id is not null and not exists (select 1 from public.client_projects where id=new.project_id and client_id=new.client_id) then raise exception 'Project must belong to the selected client company'; end if; return new; end $$;
+create trigger ticket_project_client before insert or update on public.support_tickets for each row execute function public.validate_project_client();
+create trigger invoice_project_client before insert or update on public.invoices for each row execute function public.validate_project_client();
+alter policy "client creates tickets" on public.support_tickets with check (public.owns_client(client_id) and (project_id is null or public.owns_project(project_id)) and status='Open');
+drop policy "staff draft access" on public.submission_drafts;
+create policy "staff read drafts" on public.submission_drafts for select to authenticated using (public.is_staff(auth.uid()));
+create policy "staff create own drafts" on public.submission_drafts for insert to authenticated with check (public.is_staff(auth.uid()) and staff_id=auth.uid());
+create policy "staff edit own drafts" on public.submission_drafts for update to authenticated using (public.is_staff(auth.uid()) and staff_id=auth.uid()) with check (public.is_staff(auth.uid()) and staff_id=auth.uid());
+create policy "admin remove drafts" on public.submission_drafts for delete to authenticated using (public.is_admin(auth.uid()));

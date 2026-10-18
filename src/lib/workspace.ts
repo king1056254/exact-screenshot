@@ -6,7 +6,7 @@ export const workspaceDb: SupabaseClient = supabase;
 export type RecordRow = Record<string, unknown> & { id: string };
 export type Field = { key: string; label: string; type?: 'text' | 'textarea' | 'number' | 'date' | 'boolean' | 'array'; required?: boolean; ref?: string };
 export type Resource = { table: string; title: string; fields: Field[]; adminOnly?: boolean };
-const f = (key: string, type: Field['type'] = 'text', required = false, ref?: string): Field => ({ key, label: key.replaceAll('_', ' ').replace(/^./, c => c.toUpperCase()), type, required, ref });
+const f = (key: string, type: Field['type'] = 'text', required = false, ref?: string): Field => ({ key, label: key.replaceAll('_', ' ').replace(/^./, c => c.toUpperCase()), ...(type ? {type} : {}), required, ...(ref ? {ref} : {}) });
 const publishing = [f('published', 'boolean'), f('sort_order', 'number')];
 export const resources: Record<string, Resource> = {
  services: { table: 'services', title: 'Services', adminOnly: true, fields: [f('title','text',true),f('slug','text',true),f('summary','textarea'),f('description','textarea'),f('features','array'),...publishing] },
