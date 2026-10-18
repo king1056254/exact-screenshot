@@ -34,14 +34,14 @@ export function PortalView({ section }: { section: string }) {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!auth.user) return;
+    if (!auth.user || !resource) return;
     const form = new FormData(event.currentTarget);
     const selectedProject = projects.data?.find(project => project.id === String(form.get('project')));
     const client = clients.data?.find(row => row.id === selectedProject?.['client_id']) ?? clients.data?.find(row => row['user_id'] === auth.user?.id);
     if (!client || (section === 'messages' && !selectedProject)) { toast.error('Choose a project linked to your company.'); return; }
     setBusy(true);
     try {
-      const payload = section === 'messages'
+      const payload: Record<string, unknown> = section === 'messages'
         ? { project_id: selectedProject?.id, body: String(form.get('body')), sender_id: auth.user.id, sender_name: auth.user.email }
         : { client_id: client.id, project_id: selectedProject?.id ?? null, subject: String(form.get('subject')), description: String(form.get('body')), priority: String(form.get('priority') || 'Normal'), status: 'Open' };
       const { error } = await workspaceDb.from(resource.table).insert(payload);
