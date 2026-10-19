@@ -1,4 +1,5 @@
 # Daylight completion
+- [ ] Staff conversational AI Assistant with separate account-saved conversations
 - [ ] Admin content and submissions workspace with secure account assignment
 - [ ] Client projects, milestones, documents, messages, tickets and invoices
 - [ ] Staff AI submission summaries and editable reply drafts
