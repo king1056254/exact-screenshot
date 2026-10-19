@@ -15,6 +15,13 @@
       "when": 1792344611247,
       "tag": "0001_workspace_ownership_and_demo_markers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792397544441,
+      "tag": "0002_staff_ai_conversations",
+      "breakpoints": true
     }
   ]
 }
