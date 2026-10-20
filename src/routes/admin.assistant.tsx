@@ -1,0 +1,4 @@
+import { createFileRoute, Outlet, useRouterState } from '@tanstack/react-router';
+import { StaffAssistant } from '@/components/workspace/StaffAssistant';
+export const Route = createFileRoute('/admin/assistant')({ head: () => ({ meta: [{ title: 'AI Assistant — Daylight Studio' }, { name: 'description', content: 'Private Daylight staff AI conversations.' }, { property: 'og:title', content: 'AI Assistant — Daylight Studio' }, { property: 'og:description', content: 'Daylight staff assistant.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }, { name: 'robots', content: 'noindex,nofollow' }] }), component: AssistantPage });
+function AssistantPage() { const path = useRouterState({ select: s => s.location.pathname }); return path.replace(/\/$/, '') === '/admin/assistant' ? <StaffAssistant /> : <Outlet />; }

@@ -1,0 +1,4 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { StaffAssistant } from '@/components/workspace/StaffAssistant';
+export const Route = createFileRoute('/admin/assistant/$threadId')({ head: () => ({ meta: [{ title: 'Staff conversation — Daylight Assistant' }, { name: 'description', content: 'Your private saved Daylight AI conversation.' }, { property: 'og:title', content: 'Staff conversation — Daylight Assistant' }, { property: 'og:description', content: 'Account-saved Daylight staff conversation.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }, { name: 'robots', content: 'noindex,nofollow' }] }), component: ConversationPage });
+function ConversationPage() { const { threadId } = Route.useParams(); return <StaffAssistant threadId={threadId} />; }
