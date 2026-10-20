@@ -55,7 +55,7 @@ export async function handleChat(request: Request) {
           message ??= 'AI could not complete this request.';
           if (response.status === 402 || response.status === 403) await pause(message);
         }
-        resolveUpstream({ status: response.status, message });
+        resolveUpstream({ status: response.status, ...(message ? { message } : {}) });
         return response;
       } catch (error) { resolveUpstream({ status: request.signal.aborted ? 499 : 503, message: request.signal.aborted ? 'Request stopped.' : 'Unable to reach AI. Try again later.' }); throw error; }
     } });
