@@ -11,33 +11,31 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    let active = true;
+    let version = 0;
+    const resolve = async (nextSession: Session | null) => {
+      const current = ++version;
+      if (!active) return;
       setSession(nextSession);
       setUser(nextSession?.user ?? null);
-      if (!nextSession?.user) {
-        setRoles([]);
-        setLoading(false);
-        return;
-      }
-      setTimeout(() => {
-        void supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", nextSession.user.id)
-          .then(({ data }) => {
-            setRoles((data ?? []).map((r) => r.role as Role));
-            setLoading(false);
-          });
-      }, 0);
+      setRoles([]);
+      if (!nextSession?.user) { setLoading(false); return; }
+      setLoading(true);
+      try {
+        const { data, error } = await supabase.from('user_roles').select('role').eq('user_id', nextSession.user.id);
+        if (active && current === version) setRoles(error ? [] : (data ?? []).map(r => r.role as Role));
+      } finally { if (active && current === version) setLoading(false); }
+    };
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      if (_event === 'TOKEN_REFRESHED') { setSession(nextSession); return; }
+      setTimeout(() => { void resolve(nextSession); }, 0);
     });
 
     void supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
-      if (!data.session?.user) setLoading(false);
+      void resolve(data.session);
     });
 
-    return () => sub.subscription.unsubscribe();
+    return () => { active = false; sub.subscription.unsubscribe(); };
   }, []);
 
   const isStaff = roles.some((r) => r === "super_admin" || r === "admin" || r === "staff");
