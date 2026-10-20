@@ -9,7 +9,7 @@ import { jobsQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Careers at Daylight — software jobs in Nairobi" },
       { name: "description", content: "Open engineering, design and delivery roles at Daylight in Nairobi, Kenya." },
       { property: "og:title", content: "Careers at Daylight" },

@@ -7,7 +7,7 @@ import { portfolioQuery, productsQuery, servicesQuery, testimonialsQuery } from 
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Daylight — Custom software company in Nairobi, Kenya" },
       {
         name: "description",

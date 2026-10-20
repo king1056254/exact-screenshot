@@ -5,7 +5,7 @@ import { industriesQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/industries")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Industries we serve — Daylight" },
       {
         name: "description",

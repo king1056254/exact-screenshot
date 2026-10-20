@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/quote")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Request a quote — Daylight" },
       { name: "description", content: "Tell Daylight about your software project and get a scoped, fixed quote." },
       { property: "og:title", content: "Request a quote — Daylight" },

@@ -5,7 +5,7 @@ import { technologiesQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/technologies")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Our technology stack — Daylight" },
       {
         name: "description",

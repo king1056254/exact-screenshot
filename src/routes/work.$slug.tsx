@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/work/$slug")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Case study — Daylight" },
       { name: "description", content: "The problem, the solution and the outcome of a Daylight project." },
       { property: "og:title", content: "Case study — Daylight" },

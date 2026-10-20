@@ -5,7 +5,7 @@ import { teamQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "About Daylight — a Kenyan software company" },
       {
         name: "description",

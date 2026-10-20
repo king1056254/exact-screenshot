@@ -6,7 +6,7 @@ import { servicesQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Services — Daylight software development" },
       {
         name: "description",

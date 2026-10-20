@@ -7,7 +7,7 @@ import { productsQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "SaaS products — Daylight" },
       {
         name: "description",

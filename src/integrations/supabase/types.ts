@@ -1190,6 +1190,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assign_workspace_account: {
+        Args: {
+          additional_role: Database["public"]["Enums"]["app_role"]
+          target_client?: string
+          target_user: string
+        }
+        Returns: undefined
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1202,6 +1210,7 @@ export type Database = {
       owns_client: { Args: { _client_id: string }; Returns: boolean }
       owns_invoice: { Args: { _invoice_id: string }; Returns: boolean }
       owns_project: { Args: { _project_id: string }; Returns: boolean }
+      remove_presentation_records: { Args: never; Returns: undefined }
     }
     Enums: {
       app_role: "super_admin" | "admin" | "staff" | "client"
