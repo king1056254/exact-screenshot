@@ -5,7 +5,7 @@ import { postsQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Insights — the Daylight blog" },
       {
         name: "description",

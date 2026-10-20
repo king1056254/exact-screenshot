@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Contact Daylight — Nairobi software company" },
       { name: "description", content: "Get in touch with Daylight about a project, a product or a partnership." },
       { property: "og:title", content: "Contact Daylight" },

@@ -12,7 +12,7 @@ import { faqsQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Frequently asked questions — Daylight" },
       {
         name: "description",

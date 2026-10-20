@@ -1,4 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Overview } from '@/components/workspace/Overview';
-export const Route=createFileRoute('/admin/')({head:()=>({meta:[{title:'Studio overview — Daylight'},{name:'description',content:'Company projects and submission overview.'},{property:'og:title',content:'Studio overview — Daylight'},{property:'og:description',content:'Company delivery overview.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:AdminOverview});
+export const Route=createFileRoute('/admin/')({head:()=>({meta:[{ name: 'robots', content: 'noindex,nofollow' },{title:'Studio overview — Daylight'},{name:'description',content:'Company projects and submission overview.'},{property:'og:title',content:'Studio overview — Daylight'},{property:'og:description',content:'Company delivery overview.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:AdminOverview});
 function AdminOverview(){return <Overview staff/>;}

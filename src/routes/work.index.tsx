@@ -5,7 +5,7 @@ import { portfolioQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/work/")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },
       { title: "Our work — Daylight case studies" },
       {
         name: "description",

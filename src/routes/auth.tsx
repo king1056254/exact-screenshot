@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
-    meta: [
+    meta: [{ property: 'og:type', content: 'website' },{ name: 'twitter:card', content: 'summary' },{ name: 'robots', content: 'noindex,nofollow' },
       { title: "Sign in — Daylight client portal" },
       { name: "description", content: "Sign in to the Daylight client portal to follow your projects and invoices." },
       { property: "og:title", content: "Sign in — Daylight" },
