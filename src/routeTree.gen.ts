@@ -25,6 +25,8 @@ import { Route as TechnologiesRouteImport } from './routes/technologies'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminSectionRouteImport } from './routes/admin.$section'
+import { Route as AdminAssistantRouteImport } from './routes/admin.assistant'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as PortalIndexRouteImport } from './routes/portal.index'
@@ -33,6 +35,7 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as AdminAssistantThreadIdRouteImport } from './routes/admin.assistant.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -114,6 +117,16 @@ const AdminSectionRoute = AdminSectionRouteImport.update({
   path: '/$section',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAssistantRoute = AdminAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -154,6 +167,11 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
   path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAssistantThreadIdRoute = AdminAssistantThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => AdminAssistantRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -171,6 +189,8 @@ export interface FileRoutesByFullPath {
   '/technologies': typeof TechnologiesRoute
   '/terms': typeof TermsRoute
   '/admin/$section': typeof AdminSectionRoute
+  '/admin/assistant': typeof AdminAssistantRouteWithChildren
+  '/api/chat': typeof ApiChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portal/$section': typeof PortalSectionRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -180,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/portal/': typeof PortalIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/work/': typeof WorkIndexRoute
+  '/admin/assistant/$threadId': typeof AdminAssistantThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -195,6 +216,8 @@ export interface FileRoutesByTo {
   '/technologies': typeof TechnologiesRoute
   '/terms': typeof TermsRoute
   '/admin/$section': typeof AdminSectionRoute
+  '/admin/assistant': typeof AdminAssistantRouteWithChildren
+  '/api/chat': typeof ApiChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portal/$section': typeof PortalSectionRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -204,6 +227,7 @@ export interface FileRoutesByTo {
   '/portal': typeof PortalIndexRoute
   '/services': typeof ServicesIndexRoute
   '/work': typeof WorkIndexRoute
+  '/admin/assistant/$threadId': typeof AdminAssistantThreadIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -222,6 +246,8 @@ export interface FileRoutesById {
   '/technologies': typeof TechnologiesRoute
   '/terms': typeof TermsRoute
   '/admin/$section': typeof AdminSectionRoute
+  '/admin/assistant': typeof AdminAssistantRouteWithChildren
+  '/api/chat': typeof ApiChatRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portal/$section': typeof PortalSectionRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -231,6 +257,7 @@ export interface FileRoutesById {
   '/portal/': typeof PortalIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/work/': typeof WorkIndexRoute
+  '/admin/assistant/$threadId': typeof AdminAssistantThreadIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -250,6 +277,8 @@ export interface FileRouteTypes {
     | '/technologies'
     | '/terms'
     | '/admin/$section'
+    | '/admin/assistant'
+    | '/api/chat'
     | '/blog/$slug'
     | '/portal/$section'
     | '/services/$slug'
@@ -259,6 +288,7 @@ export interface FileRouteTypes {
     | '/portal/'
     | '/services/'
     | '/work/'
+    | '/admin/assistant/$threadId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -274,6 +304,8 @@ export interface FileRouteTypes {
     | '/technologies'
     | '/terms'
     | '/admin/$section'
+    | '/admin/assistant'
+    | '/api/chat'
     | '/blog/$slug'
     | '/portal/$section'
     | '/services/$slug'
@@ -283,6 +315,7 @@ export interface FileRouteTypes {
     | '/portal'
     | '/services'
     | '/work'
+    | '/admin/assistant/$threadId'
   id:
     | '__root__'
     | '/'
@@ -300,6 +333,8 @@ export interface FileRouteTypes {
     | '/technologies'
     | '/terms'
     | '/admin/$section'
+    | '/admin/assistant'
+    | '/api/chat'
     | '/blog/$slug'
     | '/portal/$section'
     | '/services/$slug'
@@ -309,6 +344,7 @@ export interface FileRouteTypes {
     | '/portal/'
     | '/services/'
     | '/work/'
+    | '/admin/assistant/$threadId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -326,6 +362,7 @@ export interface RootRouteChildren {
   QuoteRoute: typeof QuoteRoute
   TechnologiesRoute: typeof TechnologiesRoute
   TermsRoute: typeof TermsRoute
+  ApiChatRoute: typeof ApiChatRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
@@ -448,6 +485,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSectionRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/assistant': {
+      id: '/admin/assistant'
+      path: '/assistant'
+      fullPath: '/admin/assistant'
+      preLoaderRoute: typeof AdminAssistantRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -504,16 +555,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/assistant/$threadId': {
+      id: '/admin/assistant/$threadId'
+      path: '/$threadId'
+      fullPath: '/admin/assistant/$threadId'
+      preLoaderRoute: typeof AdminAssistantThreadIdRouteImport
+      parentRoute: typeof AdminAssistantRoute
+    }
   }
 }
 
+interface AdminAssistantRouteChildren {
+  AdminAssistantThreadIdRoute: typeof AdminAssistantThreadIdRoute
+}
+
+const AdminAssistantRouteChildren: AdminAssistantRouteChildren = {
+  AdminAssistantThreadIdRoute: AdminAssistantThreadIdRoute,
+}
+
+const AdminAssistantRouteWithChildren = AdminAssistantRoute._addFileChildren(
+  AdminAssistantRouteChildren,
+)
+
 interface AdminRouteChildren {
   AdminSectionRoute: typeof AdminSectionRoute
+  AdminAssistantRoute: typeof AdminAssistantRouteWithChildren
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminSectionRoute: AdminSectionRoute,
+  AdminAssistantRoute: AdminAssistantRouteWithChildren,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -547,6 +619,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuoteRoute: QuoteRoute,
   TechnologiesRoute: TechnologiesRoute,
   TermsRoute: TermsRoute,
+  ApiChatRoute: ApiChatRoute,
   BlogSlugRoute: BlogSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
