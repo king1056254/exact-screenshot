@@ -45,3 +45,9 @@ export const restoreAiAccess = createServerFn({method:'POST'}).middleware([requi
  const {data:admin}=await context.supabase.rpc('is_admin',{_user_id:context.userId});if(!admin) throw new Error('Administrator access required.');
  const {supabaseAdmin}=await import('@/integrations/supabase/client.server');const {error}=await supabaseAdmin.from('ai_access_state').upsert({id:true,blocked:false,reason:null});if(error)throw new Error('Unable to restore AI access.');return {ok:true};
 });
+export const claimStudioAccess = createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).handler(async ({context})=>{
+ const {data,error}=await context.supabase.rpc('claim_studio_access');
+ if(error) throw new Error('Unable to claim studio access. Try again after signing in.');
+ if(!data) throw new Error('Studio access has already been claimed. Ask an administrator to assign your role.');
+ return {ok:true};
+});
