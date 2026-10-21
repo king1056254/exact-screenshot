@@ -1,11 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { Chrome } from "lucide-react";
 import { SiteLayout, Section } from "@/components/site/Page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/auth")({
@@ -44,6 +46,13 @@ function AuthPage() {
     if (mode === "up") toast.success("Check your email to confirm your account.");
   }
 
+  async function oauth(provider: "google" | "lovable") {
+    setBusy(true);
+    const { error } = await lovable.auth.signInWithOAuth(provider, { redirect_uri: window.location.origin });
+    setBusy(false);
+    if (error) toast.error(error instanceof Error ? error.message : "Unable to start sign-in. Try again.");
+  }
+
   return (
     <SiteLayout>
       <Section className="max-w-md">
@@ -78,6 +87,17 @@ function AuthPage() {
             <Button type="submit" className="w-full" disabled={busy}>
               {busy ? "Please wait…" : mode === "in" ? "Sign in" : "Create account"}
             </Button>
+            <div className="flex items-center gap-3 text-xs text-muted-foreground">
+              <span className="h-px flex-1 bg-border" />or continue with<span className="h-px flex-1 bg-border" />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Button type="button" variant="outline" disabled={busy} onClick={() => oauth("google")}>
+                <Chrome /> Google
+              </Button>
+              <Button type="button" variant="outline" disabled={busy} onClick={() => oauth("lovable")}>
+                Lovable
+              </Button>
+            </div>
             <Button variant="ghost"
               type="button"
               onClick={() => setMode(mode === "in" ? "up" : "in")}

@@ -29,6 +29,13 @@
       "when": 1792504754115,
       "tag": "0003_atomic_account_assignment_and_demo_cleanup",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792602164750,
+      "tag": "0004_seed_presentation_data_and_studio_claim",
+      "breakpoints": true
     }
   ]
 }
