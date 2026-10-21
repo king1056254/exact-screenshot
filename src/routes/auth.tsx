@@ -46,6 +46,13 @@ function AuthPage() {
     if (mode === "up") toast.success("Check your email to confirm your account.");
   }
 
+  async function oauth(provider: "google" | "lovable") {
+    setBusy(true);
+    const { error } = await lovable.auth.signInWithOAuth(provider, { redirect_uri: window.location.origin });
+    setBusy(false);
+    if (error) toast.error(error instanceof Error ? error.message : "Unable to start sign-in. Try again.");
+  }
+
   return (
     <SiteLayout>
       <Section className="max-w-md">
