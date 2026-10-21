@@ -1198,6 +1198,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      claim_studio_access: { Args: never; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
